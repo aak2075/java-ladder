@@ -54,8 +54,6 @@ class LadderGameTest {
 
         ladderGame.play();
 
-        players = ladderGame.getPlayers();
-
         int order = players.orderByName(name);
 
         assertThat(order).isEqualTo(xPosition);

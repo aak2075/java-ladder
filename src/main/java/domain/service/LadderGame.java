@@ -55,7 +55,4 @@ public class LadderGame {
         return orderedResults;
     }
 
-    public Players getPlayers() {
-        return players;
-    }
 }
