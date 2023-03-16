@@ -7,11 +7,11 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class SimpleArrayListTest {
-    SimpleList values;
+    SimpleList<String> values;
 
-    @BeforeEach
+    @BeforeEach 
     void setUp() {
-        values = new SimpleArrayList();
+        values = new SimpleArrayList<>();
     }
 
     @Test

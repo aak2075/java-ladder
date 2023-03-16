@@ -1,21 +1,22 @@
 package techcourse.jcf.mission;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SimpleArrayList implements SimpleList {
+public class SimpleArrayList<E> implements SimpleList<E> {
 
-    private static final int DEFAULT_SIZE = 10;
+    private static final int DEFAULE_SIZE = 10;
 
     private Object[] values;
     private int size;
 
     public SimpleArrayList() {
-        values = new Object[DEFAULT_SIZE];
+        values = new Object[DEFAULE_SIZE];
         size = 0;
     }
 
     @Override
-    public boolean add(String value) {
+    public boolean add(E value) {
         if (size > values.length) {
             return false;
         }
@@ -24,7 +25,7 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
-    public void add(int index, String value) {
+    public void add(int index, E value) {
         if (index == size) {
             expend();
         }
@@ -39,7 +40,7 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
-    public String set(int index, String value) {
+    public E set(int index, E value) {
         if (index > size) {
             throw new IndexOutOfBoundsException();
         }
@@ -49,18 +50,18 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
-    public String get(int index) {
+    public E get(int index) {
         if (index >= size) {
             throw new IndexOutOfBoundsException();
         }
 
-        return values[index].toString();
+        return (E) values[index];
     }
 
     @Override
-    public boolean contains(String value) {
+    public boolean contains(E value) {
         for (Object o : values) {
-            if (o.toString().equals(value)) {
+            if (o.equals(value)) {
                 return true;
             }
 
@@ -69,9 +70,9 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
-    public int indexOf(String value) {
+    public int indexOf(E value) {
         for (int i = 0; i < values.length; i++) {
-            if (values[i].toString().equals(value)) {
+            if (values[i].equals(value)) {
                 return i;
             }
         }
@@ -89,7 +90,7 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
-    public boolean remove(String value) {
+    public boolean remove(E value) {
 
         for (int i = 0; i < values.length; i++) {
             if (value.equals(values[i].toString())) {
@@ -102,8 +103,8 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
-    public String remove(int index) {
-        String oldValue = values[index].toString();
+    public E remove(int index) {
+        E oldValue = (E) values[index];
         final int newSize;
         newSize = size - 1;
         if (newSize > index) {

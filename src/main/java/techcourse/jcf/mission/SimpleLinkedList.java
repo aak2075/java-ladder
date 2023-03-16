@@ -1,36 +1,36 @@
 package techcourse.jcf.mission;
 
-public class SimpleLinkedList implements SimpleList {
+public class SimpleLinkedList<E> implements SimpleList<E> {
 
-    private Node first;
-    private Node last;
+    private Node<E> first;
+    private Node<E> last;
     private int size;
 
-    private static class Node {
-        String item;
-        Node next;
-        Node prev;
+    public SimpleLinkedList() {
+        size = 0;
+    }
 
-        Node(Node prev, String element, Node next) {
+    private static class Node<E> {
+        E item;
+        Node<E> next;
+        Node<E> prev;
+
+        Node(Node<E> prev, E element, Node<E> next) {
             this.item = element;
             this.next = next;
             this.prev = prev;
         }
     }
 
-    public SimpleLinkedList() {
-        size = 0;
-    }
-
     @Override
-    public boolean add(String value) {
+    public boolean add(E value) {
         if (first == null) {
-            first = new Node(null, value, null);
+            first = new Node<>(null, value, null);
             last = first;
             size = size + 1;
             return true;
         }
-        last.next = new Node(last, value, null);
+        last.next = new Node<>(last, value, null);
         last = last.next;
         size = size + 1;
         return true;
@@ -38,9 +38,9 @@ public class SimpleLinkedList implements SimpleList {
 
     // index = 1, now
     @Override
-    public void add(int index, String value) {
+    public void add(int index, E value) {
         if (index == 0) {
-            Node newNode = new Node(null, value, first);
+            Node<E> newNode = new Node<>(null, value, first);
             first.prev = newNode;
             first = newNode;
             size = size + 1;
@@ -48,18 +48,18 @@ public class SimpleLinkedList implements SimpleList {
         }
         // 0 first 1 second 2 fourth || index : 2, value : third
         if (index > 0 && index < size) {
-            Node now = first;
+            Node<E> now = first;
             for (int i = 0; i < index; i++) {
                 now = now.next;
             }
-            Node newNode = new Node(now.prev, value, now);
+            Node<E> newNode = new Node<>(now.prev, value, now);
             now.prev.next = newNode;
             now.prev = newNode;
             size = size + 1;
             return;
         }
         if (index == size) {
-            Node newNode = new Node(last, value, null);
+            Node<E> newNode = new Node<>(last, value, null);
             last.next = newNode;
             last = newNode;
             size = size + 1;
@@ -72,22 +72,22 @@ public class SimpleLinkedList implements SimpleList {
     }
 
     @Override
-    public String set(int index, String value) {
-        Node now = first;
+    public E set(int index, E value) {
+        Node<E> now = first;
         for (int i = 0; i < index; i++) {
             now = now.next;
         }
-        String oldItem = now.item;
+        E oldItem = now.item;
         now.item = value;
         return oldItem;
     }
 
     @Override
-    public String get(int index) {
+    public E get(int index) {
         if (index >= size) {
             throw new IndexOutOfBoundsException();
         }
-        Node now = first;
+        Node<E> now = first;
         for (int i = 0; i < index; i++) {
             now = now.next;
         }
@@ -95,8 +95,8 @@ public class SimpleLinkedList implements SimpleList {
     }
 
     @Override
-    public boolean contains(String value) {
-        Node now = first;
+    public boolean contains(E value) {
+        Node<E> now = first;
         while (!now.item.equals(value)) {
             if (now.next == null) {
                 return false;
@@ -107,8 +107,8 @@ public class SimpleLinkedList implements SimpleList {
     }
 
     @Override
-    public int indexOf(String value) {
-        Node now = first;
+    public int indexOf(E value) {
+        Node<E> now = first;
         int count = 0;
         while (now.next != null) {
             if (value.equals(now.item)) {
@@ -132,18 +132,18 @@ public class SimpleLinkedList implements SimpleList {
     }
 
     @Override
-    public boolean remove(String value) {
+    public boolean remove(E value) {
         int index = indexOf(value);
         return remove(index).equals(value);
     }
 
     @Override
-    public String remove(int index) {
-        Node now = first;
+    public E remove(int index) {
+        Node<E> now = first;
         for (int i = 0; i < index; i++) {
             now = now.next;
         }
-        String item = now.item;
+        E item = now.item;
         if (index == 0) {
             now.next.prev = null;
             first = now.next;
@@ -168,4 +168,6 @@ public class SimpleLinkedList implements SimpleList {
         first = null;
         last = null;
     }
+
+
 }

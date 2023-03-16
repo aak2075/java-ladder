@@ -8,11 +8,11 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class SimpleLinkedListTest {
 
-    SimpleList values;
+    SimpleList<String> values;
 
     @BeforeEach
     void setUp() {
-        values = new SimpleLinkedList();
+        values = new SimpleLinkedList<>();
     }
 
     @Test
