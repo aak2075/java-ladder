@@ -1,7 +1,12 @@
 package techcourse.jcf.mission;
 
+import org.assertj.core.api.AssertionsForClassTypes;
+import org.assertj.core.api.AssertionsForInterfaceTypes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -110,5 +115,14 @@ class SimpleArrayListTest {
 
         assertThat(values.size()).isEqualTo(0);
         assertThatThrownBy(() -> values.get(0)).isInstanceOf(IndexOutOfBoundsException.class);
+    }
+
+    @Test
+    void fromArrayToList() {
+        final String[] arrays = {"first", "second"};
+
+        final SimpleList<String> values = SimpleList.<String>fromArrayToList(arrays);
+        assertThat(values.contains("first")).isTrue();
+        assertThat(values.contains("second")).isTrue();
     }
 }

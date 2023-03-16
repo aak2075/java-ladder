@@ -2,6 +2,7 @@ package techcourse.jcf.mission;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class SimpleArrayList<E> implements SimpleList<E> {
 
@@ -13,6 +14,12 @@ public class SimpleArrayList<E> implements SimpleList<E> {
     public SimpleArrayList() {
         values = new Object[DEFAULE_SIZE];
         size = 0;
+    }
+
+    public SimpleArrayList(final E[] arrays) {
+        size = arrays.length;
+        values = new Object[size];
+        System.arraycopy(arrays, 0, values, 0, arrays.length);
     }
 
     @Override
@@ -121,4 +128,5 @@ public class SimpleArrayList<E> implements SimpleList<E> {
         Arrays.fill(values, null);
         size = 0;
     }
+
 }

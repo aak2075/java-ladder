@@ -1,5 +1,8 @@
 package techcourse.jcf.mission;
 
+import java.util.Arrays;
+import java.util.List;
+
 public interface SimpleList<T> {
 
     boolean add(T value);
@@ -17,6 +20,10 @@ public interface SimpleList<T> {
     int size();
 
     boolean isEmpty();
+
+    static <E> SimpleList<E> fromArrayToList(final E[] values){
+        return new SimpleArrayList<>(values);
+    }
 
     boolean remove(T value);
 
