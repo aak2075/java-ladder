@@ -1,12 +1,7 @@
 package techcourse.jcf.mission;
 
-import org.assertj.core.api.AssertionsForClassTypes;
-import org.assertj.core.api.AssertionsForInterfaceTypes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -14,7 +9,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 class SimpleArrayListTest {
     SimpleList<String> values;
 
-    @BeforeEach 
+    @BeforeEach
     void setUp() {
         values = new SimpleArrayList<>();
     }
@@ -124,5 +119,17 @@ class SimpleArrayListTest {
         final SimpleList<String> values = SimpleList.<String>fromArrayToList(arrays);
         assertThat(values.contains("first")).isTrue();
         assertThat(values.contains("second")).isTrue();
+    }
+
+    @Test
+    void mission3() {
+        final SimpleList<Double> doubleValues = new SimpleArrayList<Double>(0.5, 0.7);
+        final SimpleList<Integer> intValues = new SimpleArrayList<Integer>(1, 2);
+
+        final double doubleTotal = SimpleList.sum(doubleValues); // 1.2
+        final double intTotal = SimpleList.sum(intValues); // 3
+
+        assertThat(doubleTotal).isEqualTo(1.2);
+        assertThat(intTotal).isEqualTo(3);
     }
 }

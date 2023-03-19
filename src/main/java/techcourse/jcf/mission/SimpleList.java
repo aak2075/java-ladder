@@ -3,31 +3,39 @@ package techcourse.jcf.mission;
 import java.util.Arrays;
 import java.util.List;
 
-public interface SimpleList<T> {
+public interface SimpleList<E> {
 
-    boolean add(T value);
+    boolean add(E value);
 
-    void add(int index, T value);
+    void add(int index, E value);
 
-    T set(int index, T value);
+    E set(int index, E value);
 
-    T get(int index);
+    E get(int index);
 
-    boolean contains(T value);
+    boolean contains(E value);
 
-    int indexOf(T value);
+    int indexOf(E value);
 
     int size();
 
     boolean isEmpty();
 
+    static <E extends Number> double sum(SimpleList<E> values) {
+        double sum = 0;
+        for (int i = 0; i < values.size(); i++) {
+            sum = sum + values.get(i).doubleValue();
+        }
+        return sum;
+    }
+
     static <E> SimpleList<E> fromArrayToList(final E[] values){
         return new SimpleArrayList<>(values);
     }
 
-    boolean remove(T value);
+    boolean remove(E value);
 
-    T remove(int index);
+    E remove(int index);
 
     void clear();
 }

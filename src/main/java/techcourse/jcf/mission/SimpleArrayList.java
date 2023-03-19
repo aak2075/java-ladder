@@ -16,6 +16,13 @@ public class SimpleArrayList<E> implements SimpleList<E> {
         size = 0;
     }
 
+    public SimpleArrayList(E v1, E v2) {
+        values = new Object[DEFAULE_SIZE];
+        values[0] = v1;
+        values[1] = v2;
+        size = 2;
+    }
+
     public SimpleArrayList(final E[] arrays) {
         size = arrays.length;
         values = new Object[size];
