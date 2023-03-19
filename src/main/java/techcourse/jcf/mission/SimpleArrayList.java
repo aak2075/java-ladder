@@ -29,6 +29,15 @@ public class SimpleArrayList<E> implements SimpleList<E> {
         System.arraycopy(arrays, 0, values, 0, arrays.length);
     }
 
+    public SimpleArrayList(E v, E v1, E v2) {
+        values = new Object[DEFAULE_SIZE];
+        values[0] = v;
+        values[1] = v1;
+        values[2] = v2;
+        size = 3;
+    }
+
+
     @Override
     public boolean add(E value) {
         if (size > values.length) {

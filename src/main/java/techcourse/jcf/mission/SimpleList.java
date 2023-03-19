@@ -1,9 +1,29 @@
 package techcourse.jcf.mission;
 
-import java.util.Arrays;
-import java.util.List;
-
 public interface SimpleList<E> {
+
+    static <E extends Number> SimpleList<E> filterNegative(SimpleList<? extends E> values) {
+        SimpleList<E> list = new SimpleArrayList<>();
+        for (int i = 0; i < values.size(); i++) {
+            if (values.get(i).doubleValue() > 0) {
+                list.add(values.get(i));
+            }
+        }
+
+        return list;
+    }
+
+    static <E extends Number> double sum(SimpleList<E> values) {
+        double sum = 0;
+        for (int i = 0; i < values.size(); i++) {
+            sum = sum + values.get(i).doubleValue();
+        }
+        return sum;
+    }
+
+    static <E> SimpleList<E> fromArrayToList(final E[] values) {
+        return new SimpleArrayList<>(values);
+    }
 
     boolean add(E value);
 
@@ -20,18 +40,6 @@ public interface SimpleList<E> {
     int size();
 
     boolean isEmpty();
-
-    static <E extends Number> double sum(SimpleList<E> values) {
-        double sum = 0;
-        for (int i = 0; i < values.size(); i++) {
-            sum = sum + values.get(i).doubleValue();
-        }
-        return sum;
-    }
-
-    static <E> SimpleList<E> fromArrayToList(final E[] values){
-        return new SimpleArrayList<>(values);
-    }
 
     boolean remove(E value);
 

@@ -1,5 +1,6 @@
 package techcourse.jcf.mission;
 
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -131,5 +132,19 @@ class SimpleArrayListTest {
 
         assertThat(doubleTotal).isEqualTo(1.2);
         assertThat(intTotal).isEqualTo(3);
+    }
+
+    @Test
+    void mission4() {
+        final SimpleList<Double> doubleValues = new SimpleArrayList<Double>(-0.1, 0.5, 0.7);
+        final SimpleList<Integer> intValues = new SimpleArrayList<Integer>(-10, 1, 2);
+
+        final SimpleList<Double> filteredDoubleValues = SimpleList.filterNegative(doubleValues);
+        final SimpleList<Integer> filteredIntValues = SimpleList.filterNegative(intValues);
+
+        assertThat(filteredDoubleValues.get(0)).isEqualTo(0.5);
+        assertThat(filteredDoubleValues.get(1)).isEqualTo(0.7);
+        assertThat(filteredIntValues.get(0)).isEqualTo(1);
+        assertThat(filteredIntValues.get(1)).isEqualTo(2);
     }
 }
