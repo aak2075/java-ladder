@@ -37,6 +37,12 @@ public class SimpleArrayList<E> implements SimpleList<E> {
         size = 3;
     }
 
+    public SimpleArrayList(final E value) {
+        values = new Object[DEFAULE_SIZE];
+        values[0] = value;
+        size = 1;
+    }
+
 
     @Override
     public boolean add(E value) {

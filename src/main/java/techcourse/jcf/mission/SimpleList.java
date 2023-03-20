@@ -25,6 +25,13 @@ public interface SimpleList<E> {
         return new SimpleArrayList<>(values);
     }
 
+    static <E> void copy(SimpleList<E> laserPrinters, SimpleList<? super E> printers) {
+        // producers : extends, consumers : super
+        for (int i = 0; i < laserPrinters.size(); i++) {
+            printers.add(laserPrinters.get(i));
+        }
+    }
+
     boolean add(E value);
 
     void add(int index, E value);

@@ -147,4 +147,21 @@ class SimpleArrayListTest {
         assertThat(filteredIntValues.get(0)).isEqualTo(1);
         assertThat(filteredIntValues.get(1)).isEqualTo(2);
     }
+
+    @Test
+    void mission5() {
+        class Printer { }
+        class LaserPrinter extends Printer { }
+
+        final var laserPrinter = new LaserPrinter();
+
+        final SimpleList<Printer> printers = new SimpleArrayList<Printer>();
+        final SimpleList<LaserPrinter> laserPrinters = new SimpleArrayList<LaserPrinter>(laserPrinter);
+
+        SimpleList.copy(laserPrinters, printers);
+
+        System.out.println(printers.get(0) == laserPrinter); // true
+
+        assertThat(printers.get(0) == laserPrinter).isTrue();
+    }
 }
